@@ -26,15 +26,15 @@ class MoviePresenter : Presenter<MovieView> {
     }
 
     fun discoverMovie(service: DiscoverMovieService) {
+        view?.onProgress()
+
         @Configs val apiKey = Config.API_KEY
         @Configs val defaultSort = Config.DEFAULT_SORT
 
         val disposable = service.discoverMovie(apiKey, defaultSort,
                 object : NetworkCallback<DiscoverMovie> {
                     override fun onSuccess(response: DiscoverMovie) {
-                        val results = response.results
-                        val title = results.map { it.title }.take(1).toString()
-                        Log.d("MOVIE", title)
+                        view?.onSuccess(response)
                     }
 
                     override fun onError(e: Throwable) {

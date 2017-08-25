@@ -4,11 +4,11 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.os.Parcelable.Creator
 
-data class Movie(private var title: String,
-                 private var desc: String,
-                 private var date: String,
-                 private var image: String,
-                 private var vote: Double) : Parcelable {
+data class Movie(var title: String,
+                 var desc: String,
+                 var date: String,
+                 var image: String,
+                 var vote: Double) : Parcelable {
     companion object CREATOR : Creator<Movie> {
         override fun createFromParcel(parcel: Parcel): Movie = Movie(parcel)
         override fun newArray(size: Int): Array<Movie?> = arrayOfNulls(size)
@@ -21,7 +21,8 @@ data class Movie(private var title: String,
             parcel.readString(),
             parcel.readDouble())
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
+    override fun writeToParcel(parcel: Parcel,
+                               flags: Int) {
         parcel.writeString(title)
         parcel.writeString(desc)
         parcel.writeString(date)
