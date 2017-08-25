@@ -3,7 +3,10 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="id.kotlin.training.movies">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name="id.kotlin.training.movies.MovieApp"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +16,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MovieActivity">
+        <meta-data
+            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+            android:value="GlideModule" />
+        <meta-data
+            android:name="com.samsung.android.icon_container.has_icon_container"
+            android:value="true" />
+
+        <activity android:name="id.kotlin.training.movies.view.home.MovieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

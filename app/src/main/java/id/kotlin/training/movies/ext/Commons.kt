@@ -10,6 +10,8 @@ import org.joda.time.format.DateTimeFormat
 
 const val DEFAULT_DATE = "dd MMMM yyyy"
 
+internal inline fun <reified T : Any> clazz() = T::class.java
+
 internal fun getDate(date: String): String {
     val format = DateTimeFormat.forPattern(DEFAULT_DATE)
     return DateTime(date).toString(format)
