@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieAdapter(
         private val context: Context,
-        private val movies: List<Movie>
+        private val movies: List<Movie>,
+        private val listener: MovieListener
 ) : Adapter<MovieHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MovieHolder = MovieHolder(
@@ -27,7 +28,7 @@ class MovieAdapter(
 
     override fun onBindViewHolder(holder: MovieHolder?, position: Int) {
         val movie = movies[holder?.adapterPosition ?: 0]
-        holder?.bindView(context, movie)
+        holder?.bindView(context, movie, listener)
     }
 
     override fun getItemCount(): Int = movies.size
@@ -35,9 +36,11 @@ class MovieAdapter(
     class MovieHolder(itemView: View) : ViewHolder(itemView) {
 
         fun bindView(context: Context,
-                     movie: Movie) {
+                     movie: Movie,
+                     listener: MovieListener) {
             with(movie) {
                 loadImage(context, movie.image, itemView.ivMovie)
+                itemView.ivMovie.setOnClickListener { listener.onClick(movie) }
             }
         }
     }

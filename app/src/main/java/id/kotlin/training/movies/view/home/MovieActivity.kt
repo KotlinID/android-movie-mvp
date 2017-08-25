@@ -15,7 +15,9 @@ import id.kotlin.training.movies.ext.Configs
 import id.kotlin.training.movies.ext.ItemDecoration
 import id.kotlin.training.movies.ext.getDate
 import id.kotlin.training.movies.services.DiscoverMovieService
+import id.kotlin.training.movies.view.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_movie.*
+import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 open class MovieActivity : AppCompatActivity(), MovieView {
@@ -89,7 +91,11 @@ open class MovieActivity : AppCompatActivity(), MovieView {
             Movie(title, desc, date, images, vote)
         }
 
-        val adapter = MovieAdapter(this, movies)
+        val adapter = MovieAdapter(this, movies, object : MovieListener {
+            override fun onClick(movie: Movie) {
+                presenter?.openMovieDetail(movie)
+            }
+        })
         rvMovie.adapter = adapter
         adapter.notifyDataSetChanged()
 
@@ -99,5 +105,11 @@ open class MovieActivity : AppCompatActivity(), MovieView {
         }
 
         hide()
+    }
+
+    override fun onOpenMovieDetail(movie: Movie) {
+        startActivity<DetailActivity>(
+                "MOVIE" to movie
+        )
     }
 }

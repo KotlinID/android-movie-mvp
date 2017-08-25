@@ -1,6 +1,7 @@
 package id.kotlin.training.movies.view.home
 
 import android.util.Log
+import id.kotlin.training.movies.data.local.Movie
 import id.kotlin.training.movies.data.remote.DiscoverMovie
 import id.kotlin.training.movies.ext.Config
 import id.kotlin.training.movies.ext.Configs
@@ -43,5 +44,9 @@ class MoviePresenter : Presenter<MovieView> {
                 })
 
         disposable.let { disposables?.add(it) }
+    }
+
+    fun openMovieDetail(movie: Movie) {
+        view?.onOpenMovieDetail(movie)
     }
 }
