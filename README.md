@@ -1,2 +1,2 @@
-# android-movie-mvp
+# Android Movie MVP
 Android Movie MVP Architecture
