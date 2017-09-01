@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatDelegate
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import id.kotlin.training.movies.R.layout
+import id.kotlin.training.movies.R
 import id.kotlin.training.movies.data.local.Movie
 import id.kotlin.training.movies.data.remote.DiscoverMovie
 import id.kotlin.training.movies.deps.provider.ApplicationProvider
@@ -28,7 +28,7 @@ open class MovieActivity : AppCompatActivity(), MovieView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout.activity_movie)
+        setContentView(R.layout.activity_movie)
         (application as ApplicationProvider).providesApplicationComponent()
                                             .inject(this)
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)

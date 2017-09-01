@@ -32,6 +32,5 @@
             </intent-filter>
         </activity>
         <activity android:name="id.kotlin.training.movies.view.detail.DetailActivity" />
-
     </application>
 </manifest>

@@ -10,8 +10,13 @@ data class Movie(var title: String,
                  var image: String,
                  var vote: Double) : Parcelable {
     companion object CREATOR : Creator<Movie> {
-        override fun createFromParcel(parcel: Parcel): Movie = Movie(parcel)
-        override fun newArray(size: Int): Array<Movie?> = arrayOfNulls(size)
+        override fun createFromParcel(parcel: Parcel): Movie {
+            return Movie(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Movie?> {
+            return arrayOfNulls(size)
+        }
     }
 
     constructor(parcel: Parcel) : this(
@@ -21,8 +26,7 @@ data class Movie(var title: String,
             parcel.readString(),
             parcel.readDouble())
 
-    override fun writeToParcel(parcel: Parcel,
-                               flags: Int) {
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(title)
         parcel.writeString(desc)
         parcel.writeString(date)
@@ -30,5 +34,7 @@ data class Movie(var title: String,
         parcel.writeDouble(vote)
     }
 
-    override fun describeContents(): Int = 0
+    override fun describeContents(): Int {
+        return 0
+    }
 }
